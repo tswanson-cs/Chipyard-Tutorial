@@ -21,9 +21,16 @@ This step will install all the necessary dependencies needed by Chipyard.  If yo
 This step will clone the Chipyard repo, init submodules and build the risc-v toolchain.
 1. ```cd <projects>```
 2. ```git clone https://github.com/ucb-bar/chipyard.git ```
-  - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/2_1_clone_done.png?raw=true)
+    - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/2_1_clone_done.png?raw=true)
 3. ```cd chipyard```
 4. ```./scripts/init-submodules-no-riscv-tools.sh```
     - >after complete you can type ```du -sh ../chipyard/``` it should be around 2.1G
-  - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/2_1_clone_done.png?raw=true)
-5. ``````
+    - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/3_1_submodule.png?raw=true)
+5. ```export MAKEFLAGS=-j8```
+6. ```./scripts/build-toolchains.sh riscv-tools```
+    - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/4_0_0build_toolchain.png?raw=true)
+    - >Build should finish after a few hours...  However this will depend on the machine
+    - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/4_1_1_finish_build.png?raw=true)
+7. ```source env.sh``` generated from the step above
+## Building a rocket SOC using rocket-chip generator
+    
