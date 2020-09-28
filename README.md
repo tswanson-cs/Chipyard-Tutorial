@@ -21,6 +21,7 @@ This step will install all the necessary dependencies needed by Chipyard.  If on
 This step will clone the Chipyard repo, init submodules and build the risc-v toolchain.
 1. ```cd <projects>```
 2. ```git clone https://github.com/ucb-bar/chipyard.git ```
+    - > If this has an error that Make cannot be found try setting ```export MAKE=`which make` ```
     - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/2_1_clone_done.png?raw=true)
 3. ```cd chipyard```
 4. ```./scripts/init-submodules-no-riscv-tools.sh```
