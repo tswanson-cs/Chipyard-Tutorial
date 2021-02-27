@@ -35,26 +35,19 @@ This step will clone the Chipyard repo, init submodules and build the risc-v too
 7. ```source env.sh``` generated from the step above
 ## Building a rocket SOC using rocket-chip generator
 This step will give basic info on how to build Verilog source using the rocket-chip generator.
-We will also generate the FPGA source.  In the current Chipyard there is a bug when generating the FPGA source.  This patch will be included in the tutorial until UCB fixs the bug...
-1. ```cd generators/rocket-chip/```
-2. ```vim src/main/scala/system/Configs.scala```
-    - >This will open up the file for editing
-    - > locate the line below and change Orig to New
-      - Orig: ```class BaseFPGAConfig extends Config(new BaseConfig)```
-      - New:  ```class BaseFPGAConfig extends Config(new BaseConfig ++ new WithCoherentBusTopology)```
-        - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/6_2_bug_fix_fpga.png?raw=true)
-3. ```cd vsim```
-4. ```export JVM_MEMORY=6G``` >change 6G to reflect the memory on your system.  6GB = 6G ....
-5. ```make -j8 CONFIG=freechips.rocketchip.system.DefaultFPGAConfig```
+We will also generate the FPGA source.
+1. ```cd generators/rocket-chip/vsim```
+2. ```export JVM_MEMORY=6G``` >change 6G to reflect the memory on your system.  6GB = 6G ....
+3. ```make -j8 CONFIG=freechips.rocketchip.system.DefaultFPGAConfig```
     - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/6_4_done_building_fpga.png?raw=true)
     - Source will be inside the generated-src directory
     - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/6_5_done_generating_fpga.png?raw=true)
-6.  If you would like to generate a larger rocket chip you can modify the Config.scale
+4.  If you would like to generate a larger rocket chip you can modify the Config.scale
   - ```vim ../src/main/scala/system/Configs.scala```
   - >This will open up the file for editing
   - In this file many different flavours of rocket chip.  I would suggest you review the Chipyard documentation.  However we will start with generating a rocket chip with 16 big cores and the BaseFPGAConfig.
   - At the end of the file insert ```class BigFPGAConfig extends Config(new WithNBigCores(16) ++ new BaseFPGAConfig)```
   - ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/7_0_nbigcores.png?raw=true)
   - > Before proceeding: >If you want to keep the previous generated source you can ```mv generated-src DefaultFPGAConfig```
-7. ```make -j8 CONFIG=freechips.rocketchip.system.BigFPGAConfig```
-8. ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/7_2_done_bigfpga.png?raw=true)
+5. ```make -j8 CONFIG=freechips.rocketchip.system.BigFPGAConfig```
+6. ![alt text](https://github.com/Tswanson-CS/Chipyard-Tutorial/blob/master/screenshots/7_2_done_bigfpga.png?raw=true)
